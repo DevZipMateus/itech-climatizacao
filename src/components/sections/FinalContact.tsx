@@ -24,7 +24,7 @@ const FinalContact = () => {
               onClick={handleWhatsAppClick}
               className="bg-green-500 hover:bg-green-600 text-white px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8 text-base sm:text-lg md:text-xl lg:text-2xl font-bold rounded-xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 w-full sm:w-auto"
             >
-              <img src="/lovable-uploads/14f546d1-e53b-4723-8898-edcd792ddf7d.png" alt="WhatsApp" className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 mr-2 sm:mr-3 md:mr-4" />
+              <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 mr-2 sm:mr-3 md:mr-4" />
               <span className="text-sm sm:text-base md:text-lg lg:text-xl">Fale Conosco Via WhatsApp!</span>
             </Button>
           </div>

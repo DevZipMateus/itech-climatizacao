@@ -43,7 +43,7 @@ const FloatingButton = () => {
       aria-label="Contato via WhatsApp"
     >
       <img 
-        src="/lovable-uploads/14f546d1-e53b-4723-8898-edcd792ddf7d.png" 
+        src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" 
         alt="WhatsApp" 
         className="w-full h-full"
       />
