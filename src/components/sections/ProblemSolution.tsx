@@ -57,9 +57,9 @@ const ProblemSolution = () => {
               key={index}
               className="text-center p-4 sm:p-5 md:p-6 rounded-xl bg-red-500/10 border border-red-500/20"
             >
-              <problem.icon className="h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 text-red-400 mx-auto mb-3 sm:mb-4" />
+              <problem.icon className="h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 text-red-500 mx-auto mb-3 sm:mb-4 stroke-2" />
               <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 px-2">{problem.title}</h3>
-              <p className="text-sm sm:text-base text-slate-400 px-2">{problem.description}</p>
+              <p className="text-sm sm:text-base text-slate-300 px-2">{problem.description}</p>
             </div>
           ))}
         </div>
@@ -80,9 +80,9 @@ const ProblemSolution = () => {
               key={index}
               className="text-center p-4 sm:p-5 md:p-6 rounded-xl bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-all duration-300"
             >
-              <solution.icon className="h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 text-green-400 mx-auto mb-3 sm:mb-4" />
+              <solution.icon className="h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 text-green-500 mx-auto mb-3 sm:mb-4 stroke-2" />
               <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 px-2">{solution.title}</h3>
-              <p className="text-sm sm:text-base text-slate-400 px-2">{solution.description}</p>
+              <p className="text-sm sm:text-base text-slate-300 px-2">{solution.description}</p>
             </div>
           ))}
         </div>
