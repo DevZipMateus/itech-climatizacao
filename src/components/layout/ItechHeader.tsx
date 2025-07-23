@@ -82,22 +82,22 @@ const ItechHeader = () => {
         </div>
       </div>
 
-      {/* Main Header - Melhorado para mobile */}
+      {/* Main Header - Optimized for larger logo */}
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-300 ease-in-out',
-          'bg-[#0f2345] shadow-lg py-2'
+          'bg-[#0f2345] shadow-lg py-1'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            {/* Logo - Melhor responsividade */}
+          <div className="flex justify-between items-center min-h-[80px]">
+            {/* Logo - Increased to h-24 */}
             <div className="flex-shrink-0 flex items-center">
               <a href="#home" className="block">
                 <img 
                   src="/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png" 
                   alt="ITECH CLIMATIZAÇÃO - Padrão e Qualidade"
-                  className="h-14 sm:h-16 w-auto" // Aumentado o tamanho de h-10 sm:h-12 para h-14 sm:h-16
+                  className="h-24 w-auto"
                 />
               </a>
             </div>
