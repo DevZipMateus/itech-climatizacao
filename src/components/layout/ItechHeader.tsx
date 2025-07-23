@@ -97,7 +97,7 @@ const ItechHeader = () => {
                 <img 
                   src="/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png" 
                   alt="ITECH CLIMATIZAÇÃO - Padrão e Qualidade"
-                  className="h-10 sm:h-12 w-auto"
+                  className="h-14 sm:h-16 w-auto" // Aumentado o tamanho de h-10 sm:h-12 para h-14 sm:h-16
                 />
               </a>
             </div>
