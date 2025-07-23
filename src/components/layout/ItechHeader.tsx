@@ -38,7 +38,7 @@ const ItechHeader = () => {
     } else {
       const element = document.querySelector(href);
       if (element) {
-        const offset = window.innerWidth < 768 ? 80 : 100;
+        const offset = window.innerWidth < 768 ? 100 : 120;
         window.scrollTo({
           top: element.getBoundingClientRect().top + window.scrollY - offset,
           behavior: 'smooth',
@@ -82,22 +82,22 @@ const ItechHeader = () => {
         </div>
       </div>
 
-      {/* Main Header - Optimized for larger logo */}
+      {/* Main Header - Responsivo com altura dinâmica */}
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-300 ease-in-out',
-          'bg-[#0f2345] shadow-lg py-1'
+          'bg-[#0f2345] shadow-lg'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center min-h-[80px]">
-            {/* Logo - Increased to h-24 */}
+          <div className="flex justify-between items-center py-2 sm:py-3 lg:py-4">
+            {/* Logo - Tamanho responsivo */}
             <div className="flex-shrink-0 flex items-center">
               <a href="#home" className="block">
                 <img 
                   src="/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png" 
                   alt="ITECH CLIMATIZAÇÃO - Padrão e Qualidade"
-                  className="h-24 w-auto"
+                  className="h-12 sm:h-16 md:h-18 lg:h-20 w-auto"
                 />
               </a>
             </div>
