@@ -38,8 +38,9 @@ const ItechHeader = () => {
     } else {
       const element = document.querySelector(href);
       if (element) {
+        const offset = window.innerWidth < 768 ? 80 : 100;
         window.scrollTo({
-          top: element.getBoundingClientRect().top + window.scrollY - 100,
+          top: element.getBoundingClientRect().top + window.scrollY - offset,
           behavior: 'smooth',
         });
       }
@@ -52,22 +53,22 @@ const ItechHeader = () => {
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="hidden md:block bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2">
+      {/* Top Bar - Melhor responsividade */}
+      <div className="hidden lg:block bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-4 xl:space-x-6">
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>(86) 99466-6688</span>
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span className="whitespace-nowrap">(86) 99466-6688</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>italocosta.pi.cm@gmail.com</span>
+                <Mail className="h-4 w-4 flex-shrink-0" />
+                <span className="truncate">italocosta.pi.cm@gmail.com</span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <span>Siga-nos:</span>
+              <span className="hidden xl:inline">Siga-nos:</span>
               <a 
                 href="https://instagram.com/itechclimatizacao" 
                 target="_blank" 
@@ -81,35 +82,35 @@ const ItechHeader = () => {
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* Main Header - Melhorado para mobile */}
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-300 ease-in-out',
           isScrolled
             ? 'bg-white/95 backdrop-blur-sm shadow-lg py-2'
-            : 'bg-transparent py-4'
+            : 'bg-transparent py-3 md:py-4'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            {/* Logo */}
+            {/* Logo - Melhor responsividade */}
             <div className="flex-shrink-0 flex items-center">
               <a href="#home" className="block">
                 <img 
                   src="/lovable-uploads/89c16695-607f-4db1-9560-bb556d3aabe1.png" 
                   alt="ITECH CLIMATIZAÇÃO - Padrão e Qualidade"
-                  className="h-12 w-auto"
+                  className="h-10 sm:h-12 w-auto"
                 />
               </a>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-1 items-center">
+            <nav className="hidden lg:flex space-x-1 items-center">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="nav-link"
+                  className="nav-link text-sm xl:text-base"
                   onClick={(e) => scrollToSection(e, link.href)}
                 >
                   {link.name}
@@ -119,17 +120,18 @@ const ItechHeader = () => {
                 href="https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-4 btn-primary"
+                className="ml-4 btn-primary text-sm xl:text-base px-4 xl:px-6"
               >
-                Solicitar Orçamento
+                <span className="hidden xl:inline">Solicitar Orçamento</span>
+                <span className="xl:hidden">Orçamento</span>
               </a>
             </nav>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-brand-primary hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-primary"
+                className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-brand-primary hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Menu principal"
               >
@@ -143,30 +145,44 @@ const ItechHeader = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu - Melhorado */}
         <div
           className={cn(
-            'md:hidden transition-all duration-300 ease-in-out overflow-hidden',
+            'lg:hidden transition-all duration-300 ease-in-out overflow-hidden',
             isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="px-4 py-3 space-y-1 bg-white/95 backdrop-blur-sm border-t">
+          <div className="px-4 py-3 space-y-1 bg-white/98 backdrop-blur-sm border-t shadow-lg">
+            {/* Contact info mobile */}
+            <div className="border-b border-slate-200 pb-3 mb-3">
+              <div className="flex flex-col space-y-2 text-sm text-slate-600">
+                <div className="flex items-center space-x-2">
+                  <Phone className="h-4 w-4" />
+                  <span>(86) 99466-6688</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Mail className="h-4 w-4" />
+                  <span className="truncate">italocosta.pi.cm@gmail.com</span>
+                </div>
+              </div>
+            </div>
+
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-slate-50"
+                className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-slate-50 transition-colors"
                 onClick={(e) => scrollToSection(e, link.href)}
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-2">
+            <div className="pt-3">
               <a
                 href="https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-center px-4 py-3 font-medium rounded-md text-white bg-gradient-to-r from-brand-primary to-brand-secondary hover:opacity-90"
+                className="block w-full text-center px-4 py-3 font-medium rounded-md text-white bg-gradient-to-r from-brand-primary to-brand-secondary hover:opacity-90 transition-opacity"
               >
                 Solicitar Orçamento
               </a>
