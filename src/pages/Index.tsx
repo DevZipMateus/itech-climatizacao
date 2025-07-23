@@ -8,7 +8,6 @@ import About from '@/components/sections/About';
 import Services from '@/components/sections/Services';
 import Contact from '@/components/sections/Contact';
 import FloatingButton from '@/components/ui/FloatingButton';
-import { PerformanceProvider } from '@/contexts/PerformanceContext';
 import { OptimizedMotion } from '@/components/ui/OptimizedMotion';
 
 const IndexContent = memo(() => {
@@ -62,11 +61,7 @@ const IndexContent = memo(() => {
 IndexContent.displayName = 'IndexContent';
 
 const Index = () => {
-  return (
-    <PerformanceProvider>
-      <IndexContent />
-    </PerformanceProvider>
-  );
+  return <IndexContent />;
 };
 
 export default Index;
