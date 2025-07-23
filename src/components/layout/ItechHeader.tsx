@@ -41,7 +41,7 @@ const ItechHeader = () => {
     } else {
       const element = document.querySelector(href);
       if (element) {
-        const offset = window.innerWidth < 768 ? 100 : 120;
+        const offset = window.innerWidth < 768 ? 80 : 120;
         window.scrollTo({
           top: element.getBoundingClientRect().top + window.scrollY - offset,
           behavior: 'smooth',
@@ -59,7 +59,7 @@ const ItechHeader = () => {
 
   return (
     <>
-      {/* Top Bar - Positioned absolutely to not affect main header */}
+      {/* Top Bar - Only visible on desktop and when in hero section */}
       <div 
         className={cn(
           'hidden lg:block fixed w-full z-40 bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2 transition-all duration-500 ease-in-out',
@@ -96,26 +96,27 @@ const ItechHeader = () => {
         </div>
       </div>
 
-      {/* Main Header - Always at top: 0, with dynamic top margin when in hero section */}
+      {/* Main Header - Fixed positioning with responsive margin */}
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-500 ease-in-out bg-[#0f2345] shadow-lg',
           shouldHideHeader 
             ? 'opacity-0 -translate-y-full pointer-events-none' 
             : 'opacity-100 translate-y-0 pointer-events-auto',
-          isInHeroSection ? 'mt-10' : 'mt-0' // Add margin-top when in hero section to account for top bar
+          // Only add top margin on large screens when in hero section (to account for top bar)
+          isInHeroSection ? 'lg:mt-10' : 'mt-0'
         )}
         style={{ top: '0px' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2 sm:py-3 lg:py-4">
-            {/* Logo - Tamanho responsivo */}
+          <div className="flex justify-between items-center py-3 lg:py-4">
+            {/* Logo - Improved responsive sizing */}
             <div className="flex-shrink-0 flex items-center">
               <a href="#home" className="block">
                 <img 
                   src="/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png" 
                   alt="ITECH CLIMATIZAÇÃO - Padrão e Qualidade"
-                  className="h-12 sm:h-16 md:h-18 lg:h-20 w-auto"
+                  className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20 w-auto"
                 />
               </a>
             </div>
@@ -136,18 +137,18 @@ const ItechHeader = () => {
                 href="https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-4 btn-primary text-sm xl:text-base px-4 xl:px-6"
+                className="ml-4 btn-primary text-sm xl:text-base px-4 xl:px-6 py-2"
               >
                 <span className="hidden xl:inline">Solicitar Orçamento</span>
                 <span className="xl:hidden">Orçamento</span>
               </a>
             </nav>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button - Improved touch target */}
             <div className="lg:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-brand-secondary hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-secondary transition-colors"
+                className="inline-flex items-center justify-center p-3 rounded-md text-white hover:text-brand-secondary hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-secondary transition-colors min-h-[44px] min-w-[44px]"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Menu principal"
               >
@@ -161,24 +162,28 @@ const ItechHeader = () => {
           </div>
         </div>
 
-        {/* Mobile menu - Melhorado */}
+        {/* Mobile menu - Enhanced for better UX */}
         <div
           className={cn(
             'lg:hidden transition-all duration-300 ease-in-out overflow-hidden',
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="px-4 py-3 space-y-1 bg-[#0f2345] border-t border-white/20 shadow-lg">
-            {/* Contact info mobile */}
-            <div className="border-b border-white/20 pb-3 mb-3">
-              <div className="flex flex-col space-y-2 text-sm text-white/80">
-                <div className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
-                  <span>(86) 99466-6688</span>
+          <div className="px-4 py-4 space-y-2 bg-[#0f2345] border-t border-white/20 shadow-lg">
+            {/* Contact info mobile - Better spacing */}
+            <div className="border-b border-white/20 pb-4 mb-4">
+              <div className="flex flex-col space-y-3 text-sm text-white/80">
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-4 w-4 flex-shrink-0" />
+                  <a href="tel:+5586994666688" className="hover:text-white transition-colors">
+                    (86) 99466-6688
+                  </a>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4" />
-                  <span className="truncate">italocosta.pi.cm@gmail.com</span>
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-4 w-4 flex-shrink-0" />
+                  <a href="mailto:italocosta.pi.cm@gmail.com" className="truncate hover:text-white transition-colors">
+                    italocosta.pi.cm@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -187,18 +192,18 @@ const ItechHeader = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-brand-secondary hover:bg-white/10 transition-colors"
+                className="block px-4 py-3 rounded-md text-base font-medium text-white hover:text-brand-secondary hover:bg-white/10 transition-colors min-h-[44px] flex items-center"
                 onClick={(e) => scrollToSection(e, link.href)}
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-3">
+            <div className="pt-2">
               <a
                 href="https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-center px-4 py-3 font-medium rounded-md text-white bg-gradient-to-r from-brand-primary to-brand-secondary hover:opacity-90 transition-opacity"
+                className="block w-full text-center px-4 py-3 font-medium rounded-md text-white bg-gradient-to-r from-brand-primary to-brand-secondary hover:opacity-90 transition-opacity min-h-[44px] flex items-center justify-center"
               >
                 Solicitar Orçamento
               </a>
