@@ -86,9 +86,7 @@ const ItechHeader = () => {
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-300 ease-in-out',
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-sm shadow-lg py-2'
-            : 'bg-transparent py-3 md:py-4'
+          'bg-[#172f56] shadow-lg py-2'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,7 +108,7 @@ const ItechHeader = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="nav-link text-sm xl:text-base"
+                  className="relative px-3 py-2 text-white hover:text-brand-secondary transition-colors duration-300 font-medium text-sm xl:text-base"
                   onClick={(e) => scrollToSection(e, link.href)}
                 >
                   {link.name}
@@ -131,7 +129,7 @@ const ItechHeader = () => {
             <div className="lg:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-brand-primary hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-primary transition-colors"
+                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-brand-secondary hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-secondary transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Menu principal"
               >
@@ -152,10 +150,10 @@ const ItechHeader = () => {
             isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="px-4 py-3 space-y-1 bg-white/98 backdrop-blur-sm border-t shadow-lg">
+          <div className="px-4 py-3 space-y-1 bg-[#172f56] border-t border-white/20 shadow-lg">
             {/* Contact info mobile */}
-            <div className="border-b border-slate-200 pb-3 mb-3">
-              <div className="flex flex-col space-y-2 text-sm text-slate-600">
+            <div className="border-b border-white/20 pb-3 mb-3">
+              <div className="flex flex-col space-y-2 text-sm text-white/80">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
                   <span>(86) 99466-6688</span>
@@ -171,7 +169,7 @@ const ItechHeader = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-slate-50 transition-colors"
+                className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-brand-secondary hover:bg-white/10 transition-colors"
                 onClick={(e) => scrollToSection(e, link.href)}
               >
                 {link.name}
