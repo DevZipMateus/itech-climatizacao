@@ -59,14 +59,15 @@ const ItechHeader = () => {
 
   return (
     <>
-      {/* Top Bar - Only visible in hero section */}
+      {/* Top Bar - Positioned absolutely to not affect main header */}
       <div 
         className={cn(
-          'hidden lg:block bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2 transition-all duration-500 ease-in-out',
+          'hidden lg:block fixed w-full z-40 bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2 transition-all duration-500 ease-in-out',
           isInHeroSection 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 -translate-y-full pointer-events-none'
         )}
+        style={{ top: '0px' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
@@ -95,17 +96,16 @@ const ItechHeader = () => {
         </div>
       </div>
 
-      {/* Main Header - Now with scroll direction control */}
+      {/* Main Header - Always at top: 0, with dynamic top margin when in hero section */}
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-500 ease-in-out bg-[#0f2345] shadow-lg',
           shouldHideHeader 
             ? 'opacity-0 -translate-y-full pointer-events-none' 
-            : 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-100 translate-y-0 pointer-events-auto',
+          isInHeroSection ? 'mt-10' : 'mt-0' // Add margin-top when in hero section to account for top bar
         )}
-        style={{
-          top: isInHeroSection ? '40px' : '0px' // Compensate for top bar space when in hero
-        }}
+        style={{ top: '0px' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-2 sm:py-3 lg:py-4">
