@@ -2,14 +2,17 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 
 const ItechHeader = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isInHeroSection, setIsInHeroSection] = useState(true);
+  const { scrollDirection, isScrolled } = useScrollDirection({ threshold: 10 });
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const heroHeight = window.innerHeight * 0.9; // 90% da altura da viewport
+      setIsInHeroSection(window.scrollY < heroHeight);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -51,10 +54,20 @@ const ItechHeader = () => {
     }
   };
 
+  // Determine header visibility
+  const shouldHideHeader = !isInHeroSection && scrollDirection === 'down';
+
   return (
     <>
-      {/* Top Bar - Melhor responsividade */}
-      <div className="hidden lg:block bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2">
+      {/* Top Bar - Only visible in hero section */}
+      <div 
+        className={cn(
+          'hidden lg:block bg-gradient-to-r from-brand-primary to-brand-secondary text-white py-2 transition-all duration-500 ease-in-out',
+          isInHeroSection 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-full pointer-events-none'
+        )}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-4 xl:space-x-6">
@@ -82,12 +95,17 @@ const ItechHeader = () => {
         </div>
       </div>
 
-      {/* Main Header - Responsivo com altura dinâmica */}
+      {/* Main Header - Now with scroll direction control */}
       <header
         className={cn(
-          'fixed w-full z-50 transition-all duration-300 ease-in-out',
-          'bg-[#0f2345] shadow-lg'
+          'fixed w-full z-50 transition-all duration-500 ease-in-out bg-[#0f2345] shadow-lg',
+          shouldHideHeader 
+            ? 'opacity-0 -translate-y-full pointer-events-none' 
+            : 'opacity-100 translate-y-0 pointer-events-auto'
         )}
+        style={{
+          top: isInHeroSection ? '40px' : '0px' // Compensate for top bar space when in hero
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-2 sm:py-3 lg:py-4">

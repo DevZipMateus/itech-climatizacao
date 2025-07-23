@@ -3,19 +3,17 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 
 const SmartHeader = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isInHeroSection, setIsInHeroSection] = useState(true);
+  const { scrollDirection, isScrolled } = useScrollDirection({ threshold: 10 });
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
       const heroHeight = window.innerHeight * 0.9; // 90% da altura da viewport
-      
-      setIsScrolled(scrollY > 20);
-      setIsInHeroSection(scrollY < heroHeight);
+      setIsInHeroSection(window.scrollY < heroHeight);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -59,13 +57,16 @@ const SmartHeader = () => {
     window.open('https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20automação%20e%20segurança%20residencial.', '_blank');
   };
 
+  // Determine header visibility based on scroll direction and hero section
+  const shouldHideHeader = !isInHeroSection && scrollDirection === 'down';
+
   return (
     <header
       className={cn(
         'fixed w-full z-50 transition-all duration-500 ease-in-out py-4',
-        isInHeroSection 
-          ? 'opacity-0 pointer-events-none transform -translate-y-full'
-          : 'opacity-100 pointer-events-auto transform translate-y-0',
+        shouldHideHeader
+          ? 'opacity-0 -translate-y-full pointer-events-none'
+          : 'opacity-100 translate-y-0 pointer-events-auto',
         isScrolled
           ? 'bg-black/80 backdrop-blur-md shadow-lg border-b border-green-500/20'
           : 'bg-transparent'

@@ -2,14 +2,17 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isInHeroSection, setIsInHeroSection] = useState(true);
+  const { scrollDirection, isScrolled } = useScrollDirection({ threshold: 10 });
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const heroHeight = window.innerHeight * 0.9;
+      setIsInHeroSection(window.scrollY < heroHeight);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -50,10 +53,16 @@ const Header = () => {
     }
   };
 
+  // Determine header visibility based on scroll direction and hero section
+  const shouldHideHeader = !isInHeroSection && scrollDirection === 'down';
+
   return (
     <header
       className={cn(
-        'fixed w-full z-50 transition-all duration-300 ease-in-out py-4',
+        'fixed w-full z-50 transition-all duration-500 ease-in-out py-4',
+        shouldHideHeader
+          ? 'opacity-0 -translate-y-full pointer-events-none'
+          : 'opacity-100 translate-y-0 pointer-events-auto',
         isScrolled
           ? 'bg-white/95 backdrop-blur-sm shadow-subtle'
           : 'bg-transparent'
