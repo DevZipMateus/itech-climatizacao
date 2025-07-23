@@ -11,7 +11,7 @@ const ItechFooter = () => {
           {/* Logo e Descrição */}
           <div className="lg:col-span-1">
             <img 
-              src="/lovable-uploads/89c16695-607f-4db1-9560-bb556d3aabe1.png" 
+              src="/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png" 
               alt="ITECH CLIMATIZAÇÃO"
               className="h-16 w-auto mb-4"
             />

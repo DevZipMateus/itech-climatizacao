@@ -56,7 +56,7 @@ const ItechHome = () => {
       { property: 'og:title', content: 'ITECH CLIMATIZAÇÃO - Padrão e Qualidade em Climatização' },
       { property: 'og:description', content: 'Especialistas em instalação, manutenção e higienização de ar condicionado. Atendimento de qualidade em Campo Maior - PI.' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: '/lovable-uploads/89c16695-607f-4db1-9560-bb556d3aabe1.png' },
+      { property: 'og:image', content: '/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png' },
       { property: 'og:url', content: window.location.href },
       { property: 'og:site_name', content: 'ITECH CLIMATIZAÇÃO' },
     ];
@@ -76,7 +76,7 @@ const ItechHome = () => {
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'ITECH CLIMATIZAÇÃO - Padrão e Qualidade em Climatização' },
       { name: 'twitter:description', content: 'Especialistas em instalação, manutenção e higienização de ar condicionado. Atendimento de qualidade em Campo Maior - PI.' },
-      { name: 'twitter:image', content: '/lovable-uploads/89c16695-607f-4db1-9560-bb556d3aabe1.png' },
+      { name: 'twitter:image', content: '/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png' },
     ];
 
     twitterTags.forEach(tag => {

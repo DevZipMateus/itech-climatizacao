@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -94,7 +95,7 @@ const ItechHeader = () => {
             <div className="flex-shrink-0 flex items-center">
               <a href="#home" className="block">
                 <img 
-                  src="/lovable-uploads/89c16695-607f-4db1-9560-bb556d3aabe1.png" 
+                  src="/lovable-uploads/6eab3671-32f8-4cb5-a319-d1e2ebd2b185.png" 
                   alt="ITECH CLIMATIZAÇÃO - Padrão e Qualidade"
                   className="h-10 sm:h-12 w-auto"
                 />
