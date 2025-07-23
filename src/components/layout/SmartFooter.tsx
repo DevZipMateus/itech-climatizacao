@@ -65,7 +65,7 @@ const SmartFooter = () => {
                 onClick={handleWhatsAppClick}
                 className="flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105"
               >
-                <img src="/lovable-uploads/5a46be1b-4445-4178-8d9f-a7e8edfd42d5.png" alt="WhatsApp" className="h-4 w-4" />
+                <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-4 w-4" />
                 <span>WhatsApp</span>
               </button>
             </div>

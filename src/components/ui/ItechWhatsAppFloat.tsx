@@ -1,5 +1,6 @@
+
 import { useEffect, useState } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const ItechWhatsAppFloat = () => {
@@ -88,7 +89,7 @@ const ItechWhatsAppFloat = () => {
         )}
         aria-label="Contato via WhatsApp"
       >
-        <MessageCircle className="h-8 w-8 text-white" />
+        <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-8 w-8" />
         
         {/* Pulse Animation */}
         <span className="absolute top-0 right-0 flex h-4 w-4">

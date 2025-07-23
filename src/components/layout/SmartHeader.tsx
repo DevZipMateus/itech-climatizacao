@@ -97,7 +97,7 @@ const SmartHeader = () => {
               onClick={handleWhatsAppClick}
               className="ml-4 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105"
             >
-              <img src="/lovable-uploads/5a46be1b-4445-4178-8d9f-a7e8edfd42d5.png" alt="WhatsApp" className="h-4 w-4 mr-2" />
+              <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-4 w-4 mr-2" />
               WhatsApp
             </Button>
           </nav>
@@ -143,7 +143,7 @@ const SmartHeader = () => {
               onClick={handleWhatsAppClick}
               className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-md font-medium"
             >
-              <img src="/lovable-uploads/5a46be1b-4445-4178-8d9f-a7e8edfd42d5.png" alt="WhatsApp" className="h-4 w-4 mr-2" />
+              <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-4 w-4 mr-2" />
               Fale Conosco
             </Button>
           </div>
