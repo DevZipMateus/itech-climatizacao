@@ -1,6 +1,7 @@
 
 import React, { memo } from 'react';
 import { useOptimizedIntersectionObserver } from '@/hooks/useOptimizedIntersectionObserver';
+import { usePerformanceContext } from '@/contexts/PerformanceContext';
 
 interface LazySectionProps {
   children: React.ReactNode;
@@ -17,7 +18,8 @@ const LazySection = memo<LazySectionProps>(({
   once = false,
   enabled = true
 }) => {
-  const { elementRef, isVisible, settings } = useOptimizedIntersectionObserver({
+  const { settings } = usePerformanceContext();
+  const { elementRef, isVisible } = useOptimizedIntersectionObserver({
     threshold,
     rootMargin: '100px',
     once,
