@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -86,7 +85,7 @@ const ItechHeader = () => {
       <header
         className={cn(
           'fixed w-full z-50 transition-all duration-300 ease-in-out',
-          'bg-[#33508f] shadow-lg py-2'
+          'bg-[#0f2345] shadow-lg py-2'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,7 +149,7 @@ const ItechHeader = () => {
             isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="px-4 py-3 space-y-1 bg-[#33508f] border-t border-white/20 shadow-lg">
+          <div className="px-4 py-3 space-y-1 bg-[#0f2345] border-t border-white/20 shadow-lg">
             {/* Contact info mobile */}
             <div className="border-b border-white/20 pb-3 mb-3">
               <div className="flex flex-col space-y-2 text-sm text-white/80">
