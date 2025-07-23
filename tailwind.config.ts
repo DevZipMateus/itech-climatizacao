@@ -53,41 +53,42 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				green: {
-					50: '#f0fdf4',
-					100: '#dcfce7',
-					200: '#bbf7d0',
-					300: '#86efac',
-					400: '#61dca3',
-					500: '#22c55e',
-					600: '#16a34a',
-					700: '#15803d',
-					800: '#166534',
-					900: '#14532d',
+				// Cores da ITECH CLIMATIZAÇÃO baseadas na logo
+				itech: {
+					blue: {
+						50: '#eff6ff',
+						100: '#dbeafe',
+						200: '#bfdbfe',
+						300: '#93c5fd',
+						400: '#60a5fa',
+						500: '#3b82f6',
+						600: '#2563eb',
+						700: '#1d4ed8',
+						800: '#1e40af',
+						900: '#1e3a8a',
+						950: '#172554'
+					},
+					orange: {
+						50: '#fff7ed',
+						100: '#ffedd5',
+						200: '#fed7aa',
+						300: '#fdba74',
+						400: '#fb923c',
+						500: '#f97316',
+						600: '#ea580c',
+						700: '#c2410c',
+						800: '#9a3412',
+						900: '#7c2d12',
+						950: '#431407'
+					}
 				},
-				blue: {
-					50: '#eff6ff',
-					100: '#dbeafe',
-					200: '#bfdbfe',
-					300: '#93c5fd',
-					400: '#61b3dc',
-					500: '#3b82f6',
-					600: '#2563eb',
-					700: '#1d4ed8',
-					800: '#1e40af',
-					900: '#1e3a8a',
-				},
-				slate: {
-					50: '#f8fafc',
-					100: '#f1f5f9',
-					200: '#e2e8f0',
-					300: '#cbd5e1',
-					400: '#94a3b8',
-					500: '#64748b',
-					600: '#475569',
-					700: '#334155',
-					800: '#1e293b',
-					900: '#0f172a',
+				// Aliases para facilitar o uso
+				brand: {
+					primary: '#2563eb', // Azul principal
+					secondary: '#f97316', // Laranja
+					accent: '#1e40af', // Azul mais escuro
+					light: '#eff6ff', // Azul claro
+					dark: '#172554' // Azul muito escuro
 				}
 			},
 			borderRadius: {
@@ -123,6 +124,10 @@ export default {
 				pulse: {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.7' }
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
@@ -130,15 +135,21 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fadeIn 0.7s ease-in-out',
 				'slide-up': 'slideUp 0.7s ease-in-out',
-				'pulse-slow': 'pulse 3s ease-in-out infinite'
+				'pulse-slow': 'pulse 3s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				display: ['Montserrat', 'sans-serif']
+				display: ['Poppins', 'sans-serif']
 			},
 			backgroundImage: {
-				'gradient-green': 'linear-gradient(45deg, #2b4539 0%, #61dca3 100%)',
-				'gradient-blue': 'linear-gradient(45deg, #61b3dc 0%, #2b4539 100%)',
+				'gradient-itech': 'linear-gradient(135deg, #2563eb 0%, #f97316 100%)',
+				'gradient-blue': 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+				'gradient-orange': 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)'
+			},
+			boxShadow: {
+				'glow-blue': '0 0 20px rgba(37, 99, 235, 0.3)',
+				'glow-orange': '0 0 20px rgba(249, 115, 22, 0.3)'
 			}
 		}
 	},

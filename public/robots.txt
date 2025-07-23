@@ -1,0 +1,14 @@
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://itechclimatizacao.com.br/sitemap.xml
+
+# Disallow admin areas (if they exist in the future)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /private/
+
+# Allow all search engines to crawl the site
+# This helps with SEO and indexing
