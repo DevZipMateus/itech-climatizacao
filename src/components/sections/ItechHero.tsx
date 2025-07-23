@@ -41,7 +41,7 @@ const ItechHero = () => {
     <section 
       ref={sectionRef} 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 lg:pt-32"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32"
     >
       <div className="relative z-30 max-w-7xl mx-auto text-center w-full">
         <motion.div
