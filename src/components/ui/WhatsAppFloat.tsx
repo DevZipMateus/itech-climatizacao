@@ -40,7 +40,7 @@ const WhatsAppFloat = () => {
       )}
       aria-label="Contato via WhatsApp"
     >
-      <img src="/lovable-uploads/5a46be1b-4445-4178-8d9f-a7e8edfd42d5.png" alt="WhatsApp" className="h-8 w-8" />
+      <img src="/lovable-uploads/14f546d1-e53b-4723-8898-edcd792ddf7d.png" alt="WhatsApp" className="h-8 w-8" />
       <span className="absolute top-0 right-0 flex h-3 w-3">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-300"></span>

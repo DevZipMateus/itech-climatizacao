@@ -102,7 +102,7 @@ const HomeHero = () => {
             onClick={handleWhatsAppClick} 
             className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg font-semibold rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <img src="/lovable-uploads/5a46be1b-4445-4178-8d9f-a7e8edfd42d5.png" alt="WhatsApp" className="h-4 w-4 sm:h-5 sm:w-5" />
+            <img src="/lovable-uploads/14f546d1-e53b-4723-8898-edcd792ddf7d.png" alt="WhatsApp" className="h-4 w-4 sm:h-5 sm:w-5" />
             <span className="text-sm sm:text-base md:text-lg">Solicite seu Orçamento Grátis</span>
           </Button>
           
@@ -124,7 +124,7 @@ const HomeHero = () => {
             { icon: Shield, title: 'Segurança', desc: 'Proteção 24/7' },
             { icon: Zap, title: 'Eficiência', desc: 'Economia de energia' },
             { 
-              icon: () => <img src="/lovable-uploads/5a46be1b-4445-4178-8d9f-a7e8edfd42d5.png" alt="WhatsApp" className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 mx-auto" />, 
+              icon: () => <img src="/lovable-uploads/14f546d1-e53b-4723-8898-edcd792ddf7d.png" alt="WhatsApp" className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 mx-auto" />, 
               title: 'Suporte', 
               desc: 'Atendimento completo' 
             }
