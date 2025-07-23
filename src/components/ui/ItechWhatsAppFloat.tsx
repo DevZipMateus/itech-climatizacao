@@ -1,46 +1,19 @@
-
-import { useEffect, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { X } from 'lucide-react';
+import { useOptimizedScrollDirection } from '@/hooks/useOptimizedScrollDirection';
 import { cn } from '@/lib/utils';
 
-const ItechWhatsAppFloat = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+const ItechWhatsAppFloat = memo(() => {
+  const { isScrolled } = useOptimizedScrollDirection({ threshold: 300 });
   const [showTooltip, setShowTooltip] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    const animationInterval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 1000);
-    }, 5000);
-
-    // Show tooltip after 3 seconds
-    const tooltipTimer = setTimeout(() => {
-      setShowTooltip(true);
-      setTimeout(() => setShowTooltip(false), 3000);
-    }, 3000);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearInterval(animationInterval);
-      clearTimeout(tooltipTimer);
-    };
+  const handleClick = useCallback(() => {
+    window.open('https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO.', '_blank');
   }, []);
 
-  const handleClick = () => {
-    window.open('https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO.', '_blank');
-  };
-
-  const closeTooltip = () => {
+  const closeTooltip = useCallback(() => {
     setShowTooltip(false);
-  };
+  }, []);
 
   return (
     <>
@@ -83,10 +56,14 @@ const ItechWhatsAppFloat = () => {
       <button
         onClick={handleClick}
         className={cn(
-          'fixed bottom-6 right-6 z-40 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center',
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0',
-          isAnimating ? 'animate-bounce' : ''
+          'fixed bottom-6 right-6 z-40 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center',
+          isScrolled ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
         )}
+        style={{ 
+          willChange: 'transform, opacity',
+          transform: `translateY(${isScrolled ? '0' : '80px'})`,
+          opacity: isScrolled ? 1 : 0
+        }}
         aria-label="Contato via WhatsApp"
       >
         <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-8 w-8" />
@@ -99,6 +76,8 @@ const ItechWhatsAppFloat = () => {
       </button>
     </>
   );
-};
+});
+
+ItechWhatsAppFloat.displayName = 'ItechWhatsAppFloat';
 
 export default ItechWhatsAppFloat;

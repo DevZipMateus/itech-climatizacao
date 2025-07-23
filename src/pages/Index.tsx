@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile'; 
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -8,13 +8,14 @@ import About from '@/components/sections/About';
 import Services from '@/components/sections/Services';
 import Contact from '@/components/sections/Contact';
 import FloatingButton from '@/components/ui/FloatingButton';
-import { motion } from 'framer-motion';
+import { PerformanceProvider } from '@/contexts/PerformanceContext';
+import { OptimizedMotion } from '@/components/ui/OptimizedMotion';
 
-const Index = () => {
+const IndexContent = memo(() => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Smooth scroll function for anchor links
+    // Optimized smooth scroll function
     const handleAnchorLinkClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
@@ -23,30 +24,30 @@ const Index = () => {
         if (href) {
           const element = document.querySelector(href);
           if (element) {
-            const offset = isMobile ? 60 : 80; // Smaller offset for mobile
-            window.scrollTo({
-              top: element.getBoundingClientRect().top + window.scrollY - offset,
+            const offset = isMobile ? 60 : 80;
+            element.scrollIntoView({
               behavior: 'smooth',
+              block: 'start'
             });
           }
         }
       }
     };
 
-    document.addEventListener('click', handleAnchorLinkClick);
+    document.addEventListener('click', handleAnchorLinkClick, { passive: true });
     return () => {
       document.removeEventListener('click', handleAnchorLinkClick);
     };
   }, [isMobile]);
 
   return (
-    <motion.div
+    <OptimizedMotion
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="overflow-hidden"
     >
       <Header />
-      <main className="space-y-0"> {/* Removed spacing between sections */}
+      <main className="space-y-0">
         <Hero />
         <About />
         <Services />
@@ -54,7 +55,17 @@ const Index = () => {
       </main>
       <FloatingButton />
       <Footer />
-    </motion.div>
+    </OptimizedMotion>
+  );
+});
+
+IndexContent.displayName = 'IndexContent';
+
+const Index = () => {
+  return (
+    <PerformanceProvider>
+      <IndexContent />
+    </PerformanceProvider>
   );
 };
 

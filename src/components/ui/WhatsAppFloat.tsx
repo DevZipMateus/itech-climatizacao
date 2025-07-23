@@ -1,43 +1,28 @@
 
-import { useEffect, useState } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useOptimizedIntersectionObserver } from '@/hooks/useOptimizedIntersectionObserver';
+import { useOptimizedScrollDirection } from '@/hooks/useOptimizedScrollDirection';
 import { cn } from '@/lib/utils';
 
-const WhatsAppFloat = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
-    };
-
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    const animationInterval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 1000);
-    }, 5000);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearInterval(animationInterval);
-    };
-  }, []);
-
-  const handleClick = () => {
+const WhatsAppFloat = memo(() => {
+  const { isScrolled } = useOptimizedScrollDirection({ threshold: 300 });
+  
+  const handleClick = useCallback(() => {
     window.open('https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20transformar%20minha%20casa%20com%20automação%20e%20segurança.%20Podem%20me%20ajudar?', '_blank');
-  };
+  }, []);
 
   return (
     <button
       onClick={handleClick}
       className={cn(
-        'fixed bottom-6 right-6 z-40 flex items-center justify-center w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl transition-all duration-300 hover:scale-110',
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0',
-        isAnimating ? 'animate-bounce' : ''
+        'fixed bottom-6 right-6 z-40 flex items-center justify-center w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl transition-all duration-300',
+        isScrolled ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
       )}
+      style={{ 
+        willChange: 'transform, opacity',
+        transform: `translateY(${isScrolled ? '0' : '80px'})`,
+        opacity: isScrolled ? 1 : 0
+      }}
       aria-label="Contato via WhatsApp"
     >
       <img src="/lovable-uploads/52aa5dee-9efe-404c-9fa0-93461b12f4d6.png" alt="WhatsApp" className="h-8 w-8" />
@@ -47,6 +32,8 @@ const WhatsAppFloat = () => {
       </span>
     </button>
   );
-};
+});
+
+WhatsAppFloat.displayName = 'WhatsAppFloat';
 
 export default WhatsAppFloat;

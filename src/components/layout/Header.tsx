@@ -1,21 +1,28 @@
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useScrollDirection } from '@/hooks/useScrollDirection';
+import { useOptimizedScrollDirection } from '@/hooks/useOptimizedScrollDirection';
 
-const Header = () => {
+const Header = memo(() => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isInHeroSection, setIsInHeroSection] = useState(true);
-  const { scrollDirection, isScrolled } = useScrollDirection({ threshold: 10 });
+  const { scrollDirection, isScrolled } = useOptimizedScrollDirection({ threshold: 10 });
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const heroHeight = window.innerHeight * 0.9;
-      setIsInHeroSection(window.scrollY < heroHeight);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const heroHeight = window.innerHeight * 0.9;
+          setIsInHeroSection(window.scrollY < heroHeight);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -28,10 +35,9 @@ const Header = () => {
     { name: 'Contato', href: '#contact' },
   ];
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
-    // Handle "Início" link specially to scroll to top
     if (href === '#home') {
       window.scrollTo({
         top: 0,
@@ -47,13 +53,15 @@ const Header = () => {
       }
     }
     
-    // Close mobile menu if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
-  };
+  }, [isMobileMenuOpen]);
 
-  // Determine header visibility based on scroll direction and hero section
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
+
   const shouldHideHeader = !isInHeroSection && scrollDirection === 'down';
 
   return (
@@ -67,6 +75,7 @@ const Header = () => {
           ? 'bg-white/95 backdrop-blur-sm shadow-subtle'
           : 'bg-transparent'
       )}
+      style={{ willChange: 'transform, opacity' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -76,7 +85,6 @@ const Header = () => {
             </a>
           </div>
 
-          {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-2 items-center">
             {navLinks.map((link) => (
               <a
@@ -93,12 +101,11 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-blue-500 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={toggleMobileMenu}
             >
               <span className="sr-only">Abrir menu</span>
               {isMobileMenuOpen ? (
@@ -111,7 +118,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={cn(
           'md:hidden transition-all duration-300 ease-bounce-ease overflow-hidden',
@@ -142,6 +148,8 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

@@ -1,32 +1,13 @@
-
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { memo } from 'react';
 import { Award, Users, Heart, Target } from 'lucide-react';
+import { useOptimizedIntersectionObserver } from '@/hooks/useOptimizedIntersectionObserver';
+import { OptimizedMotion } from '@/components/ui/OptimizedMotion';
 
-const ItechAbout = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-        observer.unobserve(entry.target);
-      }
-    }, {
-      threshold: 0.1
-    });
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+const ItechAbout = memo(() => {
+  const { elementRef, isVisible } = useOptimizedIntersectionObserver({
+    threshold: 0.1,
+    once: true
+  });
 
   const values = [
     {
@@ -52,9 +33,9 @@ const ItechAbout = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="about" className="bg-white py-12 sm:py-16 md:py-20">
+    <section ref={elementRef} id="about" className="bg-white py-12 sm:py-16 md:py-20">
       <div className="section-container">
-        <motion.div 
+        <OptimizedMotion 
           className="text-center max-w-4xl mx-auto mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -66,11 +47,11 @@ const ItechAbout = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
             Sobre a <span className="text-transparent bg-clip-text bg-gradient-itech">ITECH</span>
           </h2>
-        </motion.div>
+        </OptimizedMotion>
 
         <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
-          {/* História - Melhor responsividade */}
-          <motion.div
+          {/* História */}
+          <OptimizedMotion
             initial={{ opacity: 0, x: -20 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -108,10 +89,10 @@ const ItechAbout = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </OptimizedMotion>
 
-          {/* Valores - Melhor responsividade */}
-          <motion.div
+          {/* Valores */}
+          <OptimizedMotion
             initial={{ opacity: 0, x: 20 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -129,7 +110,7 @@ const ItechAbout = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {values.map((value, index) => (
-                  <motion.div
+                  <OptimizedMotion
                     key={index}
                     className="itech-card text-center"
                     initial={{ opacity: 0, y: 20 }}
@@ -141,15 +122,17 @@ const ItechAbout = () => {
                     </div>
                     <h4 className="text-base sm:text-lg font-semibold mb-2">{value.title}</h4>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{value.description}</p>
-                  </motion.div>
+                  </OptimizedMotion>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </OptimizedMotion>
         </div>
       </div>
     </section>
   );
-};
+});
+
+ItechAbout.displayName = 'ItechAbout';
 
 export default ItechAbout;

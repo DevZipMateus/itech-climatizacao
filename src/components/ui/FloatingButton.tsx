@@ -1,33 +1,15 @@
 
-import { useEffect, useState } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useOptimizedScrollDirection } from '@/hooks/useOptimizedScrollDirection';
 import { cn } from '@/lib/utils';
 
-const FloatingButton = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+const FloatingButton = memo(() => {
+  const { isScrolled } = useOptimizedScrollDirection({ 
+    threshold: window.innerHeight * 0.7 
+  });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Show the button when scrolled past the hero section (approx. screen height)
-      const heroHeight = window.innerHeight;
-      setIsVisible(window.scrollY > heroHeight * 0.7);
-    };
-
-    // Initial check on mount
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Add attention-grabbing animation interval
-    const animationInterval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 1000);
-    }, 5000);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearInterval(animationInterval);
-    };
+  const handleClick = useCallback(() => {
+    window.open('https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20contabilidade.', '_blank');
   }, []);
 
   return (
@@ -36,10 +18,14 @@ const FloatingButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'fixed bottom-6 right-6 z-40 flex items-center justify-center w-16 h-16 rounded-full shadow-elevation transition-all duration-300 hover:scale-110',
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0',
-        isAnimating ? 'animate-bounce' : ''
+        'fixed bottom-6 right-6 z-40 flex items-center justify-center w-16 h-16 rounded-full shadow-elevation transition-all duration-300',
+        isScrolled ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
       )}
+      style={{ 
+        willChange: 'transform, opacity',
+        transform: `translateY(${isScrolled ? '0' : '80px'})`,
+        opacity: isScrolled ? 1 : 0
+      }}
       aria-label="Contato via WhatsApp"
     >
       <img 
@@ -53,6 +39,8 @@ const FloatingButton = () => {
       </span>
     </a>
   );
-};
+});
+
+FloatingButton.displayName = 'FloatingButton';
 
 export default FloatingButton;

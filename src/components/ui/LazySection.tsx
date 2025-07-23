@@ -1,50 +1,48 @@
 
-import { useState, useEffect, useRef } from 'react';
+import React, { memo } from 'react';
+import { useOptimizedIntersectionObserver } from '@/hooks/useOptimizedIntersectionObserver';
 
 interface LazySectionProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;
   threshold?: number;
+  once?: boolean;
+  enabled?: boolean;
 }
 
-const LazySection = ({ children, fallback, threshold = 0.1 }: LazySectionProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+const LazySection = memo<LazySectionProps>(({ 
+  children, 
+  fallback, 
+  threshold = 0.1,
+  once = false,
+  enabled = true
+}) => {
+  const { elementRef, isVisible, settings } = useOptimizedIntersectionObserver({
+    threshold,
+    rootMargin: '100px',
+    once,
+    enabled: enabled && settings.enableLazyLoading
+  });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasLoaded) {
-          setIsVisible(true);
-          setHasLoaded(true);
-          observer.disconnect();
-        }
-      },
-      { 
-        threshold,
-        rootMargin: '100px'
-      }
-    );
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-      observer.disconnect();
-    };
-  }, [threshold, hasLoaded]);
+  const defaultFallback = (
+    <div className="h-32 animate-pulse bg-slate-200 rounded" 
+         style={{ minHeight: '200px' }} />
+  );
 
   return (
-    <div ref={ref} style={{ minHeight: isVisible ? 'auto' : '200px' }}>
-      {isVisible ? children : (fallback || <div className="h-32 animate-pulse bg-slate-200 rounded" />)}
+    <div 
+      ref={elementRef} 
+      style={{ 
+        minHeight: isVisible ? 'auto' : '200px',
+        contentVisibility: 'auto',
+        containIntrinsicSize: '200px'
+      }}
+    >
+      {isVisible ? children : (fallback || defaultFallback)}
     </div>
   );
-};
+});
+
+LazySection.displayName = 'LazySection';
 
 export default LazySection;
