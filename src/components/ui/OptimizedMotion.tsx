@@ -7,6 +7,8 @@ interface OptimizedMotionProps extends MotionProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;
   reduceMotion?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export const OptimizedMotion = memo<OptimizedMotionProps>(({ 
@@ -17,13 +19,15 @@ export const OptimizedMotion = memo<OptimizedMotionProps>(({
   animate,
   exit,
   transition,
+  className,
+  style,
   ...props 
 }) => {
   const { settings } = usePerformanceContext();
 
   // If animations should be reduced, render static content
   if (settings.reduceAnimations || settings.prefersReducedMotion || reduceMotion) {
-    return <div {...(props as any)}>{fallback || children}</div>;
+    return <div className={className} style={style} {...(props as any)}>{fallback || children}</div>;
   }
 
   // Optimized animation properties
@@ -38,9 +42,10 @@ export const OptimizedMotion = memo<OptimizedMotionProps>(({
     animate: animate || { opacity: 1, y: 0 },
     exit: exit || { opacity: 0, y: -10 },
     transition: optimizedTransition,
+    className,
     style: {
       willChange: 'transform, opacity',
-      ...props.style
+      ...style
     },
     ...props
   };

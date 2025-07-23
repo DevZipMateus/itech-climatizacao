@@ -31,7 +31,7 @@ const LazySection = memo<LazySectionProps>(({
 
   return (
     <div 
-      ref={elementRef} 
+      ref={elementRef as React.RefObject<HTMLDivElement>}
       style={{ 
         minHeight: isVisible ? 'auto' : '200px',
         contentVisibility: 'auto',
