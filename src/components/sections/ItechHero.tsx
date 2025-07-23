@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { Snowflake, Wrench, Shield, MessageCircle } from 'lucide-react';
@@ -43,7 +42,7 @@ const ItechHero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8"
     >
-      <div className="relative z-10 max-w-7xl mx-auto text-center w-full">
+      <div className="relative z-30 max-w-7xl mx-auto text-center w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,7 +52,7 @@ const ItechHero = () => {
           <img 
             src="/lovable-uploads/89c16695-607f-4db1-9560-bb556d3aabe1.png" 
             alt="ITECH CLIMATIZAÇÃO"
-            className="h-20 sm:h-24 md:h-32 w-auto mx-auto mb-4 sm:mb-6 drop-shadow-2xl"
+            className="h-20 sm:h-24 md:h-32 w-auto mx-auto mb-4 sm:mb-6 drop-shadow-2xl relative z-10"
           />
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-3 sm:mb-4 leading-tight">

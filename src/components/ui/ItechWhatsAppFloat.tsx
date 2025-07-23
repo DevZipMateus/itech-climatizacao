@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -46,7 +45,7 @@ const ItechWhatsAppFloat = () => {
     <>
       {/* Tooltip */}
       {showTooltip && (
-        <div className="fixed bottom-24 right-6 z-50 bg-white border border-slate-200 rounded-xl p-4 shadow-lg max-w-xs animate-slide-up">
+        <div className="fixed bottom-24 right-6 z-40 bg-white border border-slate-200 rounded-xl p-4 shadow-lg max-w-xs animate-slide-up">
           <div className="flex items-start justify-between">
             <div className="flex items-start space-x-3">
               <div className="w-10 h-10 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full flex items-center justify-center flex-shrink-0">
