@@ -1,17 +1,48 @@
 
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { Snowflake, Wrench, Shield, MessageCircle } from 'lucide-react';
 
 const ItechHero = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<any>(null);
+
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/5586994666688?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20ITECH%20CLIMATIZAÇÃO.', '_blank');
   };
 
+  useEffect(() => {
+    if (sectionRef.current && (window as any).VANTA) {
+      vantaEffect.current = (window as any).VANTA.NET({
+        el: sectionRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x2563eb,
+        backgroundColor: 0x1a0b34,
+        points: 8.00,
+        maxDistance: 25.00,
+        spacing: 16.00
+      });
+    }
+
+    return () => {
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+      }
+    };
+  }, []);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background mantido do design atual */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-slate-900/80" />
-      
+    <section 
+      ref={sectionRef}
+      id="home" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -109,10 +140,6 @@ const ItechHero = () => {
           </p>
         </motion.div>
       </div>
-
-      {/* Efeitos visuais */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-brand-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
     </section>
   );
 };
