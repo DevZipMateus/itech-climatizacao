@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react';
@@ -122,12 +121,9 @@ const ItechLocation = () => {
               <h3 className="text-xl font-bold mb-4">Área de Atendimento</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="font-medium mb-2">Cidades Atendidas:</p>
+                  <p className="font-medium mb-2">Região Atendida:</p>
                   <ul className="space-y-1 opacity-90">
-                    <li>• Campo Maior</li>
-                    <li>• Teresina</li>
-                    <li>• Altos</li>
-                    <li>• José de Freitas</li>
+                    <li>• Campo Maior e região</li>
                   </ul>
                 </div>
                 <div>
@@ -135,7 +131,6 @@ const ItechLocation = () => {
                   <ul className="space-y-1 opacity-90">
                     <li>• Residencial</li>
                     <li>• Comercial</li>
-                    <li>• Industrial</li>
                     <li>• Emergência 24h</li>
                   </ul>
                 </div>

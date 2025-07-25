@@ -38,7 +38,7 @@ const ItechTestimonials = () => {
     },
     {
       name: 'João Santos',
-      location: 'Teresina - PI',
+      location: 'Campo Maior - PI',
       text: 'Instalação impecável! Equipe pontual, educada e muito competente. O serviço foi realizado com toda a qualidade prometida. Parabéns!',
       rating: 5,
       service: 'Instalação'
@@ -52,7 +52,7 @@ const ItechTestimonials = () => {
     },
     {
       name: 'Carlos Oliveira',
-      location: 'Altos - PI',
+      location: 'Região de Campo Maior - PI',
       text: 'Profissionalismo exemplar! Rapidez no atendimento, preço justo e garantia do serviço. Já indiquei para vários amigos.',
       rating: 5,
       service: 'Reparo'
@@ -66,7 +66,7 @@ const ItechTestimonials = () => {
     },
     {
       name: 'Roberto Lima',
-      location: 'Teresina - PI',
+      location: 'Campo Maior - PI',
       text: 'Equipe muito qualificada! Resolveram um problema que outros técnicos não conseguiam. Agora meu ar condicionado está como novo!',
       rating: 5,
       service: 'Manutenção Corretiva'
